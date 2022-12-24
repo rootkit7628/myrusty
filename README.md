@@ -1,0 +1,2 @@
+# myrusty
+Learn rust programming
