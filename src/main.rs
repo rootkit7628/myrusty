@@ -1,15 +1,31 @@
 use std::io;
+use rand::Rng;
+use std::cmp::Ordering;
 
 fn main() {
-    println!("Guess the number!");
+    println!("Atsika tsika hihisa !");
 
-    println!("Please input your guess.");
+    let secret_number = rand::thread_rng().gen_range(1..=10);
+    println!("Firy me gne sifranao.");
 
-    let mut guess: String = String::new();
+    let mut guess = String::new();
 
-    io::stdin()
-        .read_line(&mut guess)
-        .expect("Failed to read line");
+    loop {
+        io::stdin()
+            .read_line(&mut guess)
+            .expect("Eee! nagnadary koa i endrinira tiky");
 
-    println!("You guessed: {guess}");
+        let guess: u32 = guess.trim().parse().expect("Tsy henonao me nge raha zakaiko ake, ino hoa gne sifranao !");
+
+        println!("nge nomenao {guess} anah ake.");
+
+        match guess.cmp(&secret_number) {
+            Ordering::Less => println!("Pitiky lotry!"),
+            Ordering::Greater => println!("Zakabe lotry!"),
+            Ordering::Equal => {
+                println!("Marigny !");
+                break;
+            }
+        }
+    }
 }
