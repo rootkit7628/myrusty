@@ -16,10 +16,12 @@ fn main() {
             .read_line(&mut guess)
             .expect("Eee! nagnadary koa i endrinira tiky");
 
-        let guess: u32 = guess
+        let guess: u32 = match guess
             .trim()
-            .parse()
-            .expect("Tsy henonao me nge raha zakaiko ake, ino hoa gne sifranao !");
+            .parse() {
+                Ok(num) => num,
+                Err(_) => continue,
+        };
 
         println!("nge nomenao {guess} anah ake.");
 
