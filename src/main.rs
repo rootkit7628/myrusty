@@ -2,6 +2,10 @@ use rand::Rng;
 use std::cmp::Ordering;
 use std::io;
 
+fn annouce_result(res: &str, guess: u8) {
+    println!("{res}: {guess}");
+}
+
 fn main() {
     println!("Atsika tsika hihisa !");
 
@@ -16,7 +20,7 @@ fn main() {
             .read_line(&mut guess)
             .expect("Eee! nagnadary koa i endrinira tiky");
 
-        let guess: u32 = match guess
+        let guess: u8 = match guess
             .trim()
             .parse() {
                 Ok(num) => num,
@@ -29,7 +33,7 @@ fn main() {
             Ordering::Less => println!("Pitiky lotry!"),
             Ordering::Greater => println!("Zakabe lotry!"),
             Ordering::Equal => {
-                println!("Marigny !");
+                annouce_result("Hitanao nge valiny !", guess);
                 break;
             }
         }
